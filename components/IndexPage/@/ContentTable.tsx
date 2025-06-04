@@ -34,12 +34,14 @@ const NowSection = () => {
             <SectionTitle>~/Currently</SectionTitle>
             <Text>
                 I love learning new stuff, that's why most of the time I'm
-                researching about security stuuf, build new exciting projects
-                while trying to improve the quality of my works.
+                researching about security stuff, build exciting projects while
+                trying to improve the quality of my works.
                 <br />
                 <br />
-                Researching and solving problems is what I do and what I love to
-                do, and I feel I've only scratched the surface of what I can do.
+                Researching and solving complex problems is not just what I do —
+                it's what drives me. I'm deeply passionate about continuous
+                learning, and I know I've only begun to tap into my full
+                potential.
                 <br />
                 <br />
                 I'm currently working on a few projects, but I'm always open to

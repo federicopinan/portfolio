@@ -10,36 +10,25 @@ export interface Item {
     href: string
 }
 
-export const Tooltip = styled('div', {
+const Tooltip = styled('div', {
     position: 'absolute',
-    top: '-3em',
+    top: '-2.2em',
     left: '50%',
     transform: 'translateX(-50%)',
-    padding: '0.4em 0.7em',
-    borderRadius: '0.5em',
-    background: '$dockItem',
-    border: '$dockBorder',
-    color: '$primaryTextcolor',
-    fontSize: '12px',
+    background: 'rgba(30,30,30,0.95)',
+    color: '#fff',
+    padding: '0.35em 0.9em',
+    borderRadius: '8px',
+    fontSize: '0.95em',
+    fontWeight: 500,
     whiteSpace: 'nowrap',
     pointerEvents: 'none',
-    willChange: 'opacity',
-    transition: 'opacity 0.4s ease',
-    userSelect: 'none',
-    variants: {
-        visible: {
-            true: {
-                opacity: '1',
-            },
-            false: {
-                opacity: '0',
-            },
-        },
-    },
-    '[data-theme="dark"] &': {
-        background: '$darkDockItem',
-        border: '$darkDockBorder',
-        color: '$darkPrimaryTextColor',
+    opacity: 0,
+    zIndex: 100,
+    transition: 'opacity 0.2s',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+    '&[data-visible="true"]': {
+        opacity: 1,
     },
 })
 
@@ -81,24 +70,31 @@ const Item = ({icon, label, href}: Item) => {
     return (
         <Link
             href={href}
-            style={{position: 'relative'}}
+            style={{
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
             target={href.startsWith('http') ? '_blank' : undefined}>
-            <Tooltip visible={hover}>{label}</Tooltip>
+            <Tooltip data-visible={hover}>{label}</Tooltip>
             <StyledItem>{icon}</StyledItem>
             <AnimatePresence initial mode='wait'>
                 {active && (
                     <MotionActiveDot
-                        initial={{opacity: 0}}
-                        exit={{opacity: 0}}
-                        animate={{opacity: 1}}
-                        transition={{duration: 0.4}}
+                        initial={{opacity: 0, scale: 0.7}}
+                        exit={{opacity: 0, scale: 0.7}}
+                        animate={{opacity: 1, scale: 1}}
+                        transition={{duration: 0.3}}
                     />
                 )}
             </AnimatePresence>
         </Link>
     )
 }
+
+export {Tooltip}
 
 export default Item

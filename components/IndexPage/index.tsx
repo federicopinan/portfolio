@@ -7,6 +7,7 @@ import SectionProvider from './@/SectionProvider'
 import PostsSection from './@/PostsSection'
 import NowSection from './@/ContentTable'
 import Meta from 'components/@/Meta'
+import TimelineSection from './@/TimelineSection'
 
 const variants = {
     initial: {
@@ -36,6 +37,7 @@ const IndexPage = ({data}: {data: {posts: Post[]; projects: Project[]}}) => {
                     animate='animate'
                     exit={{opacity: 0, transition: {duration: 0.3}}}>
                     <IntroSection key={'intro'} />
+                    <TimelineSection key={'timeline'} />
                     <ProjectsSection
                         key={'projects'}
                         projects={data.projects}

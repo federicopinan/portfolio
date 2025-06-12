@@ -88,56 +88,85 @@ export const TitleSection = ({
     )
 }
 
+const PostLink = ({
+    href,
+    children,
+    isExternal,
+}: {
+    href: string
+    children: React.ReactNode
+    isExternal?: boolean
+}) => {
+    if (isExternal) {
+        return (
+            <a
+                href={href}
+                target='_blank'
+                rel='noopener noreferrer'
+                style={{textDecoration: 'none'}}>
+                {children}
+            </a>
+        )
+    }
+    return <Link href={href}>{children}</Link>
+}
+
 const PageTable = ({data, type}: Props) => {
     return (
         <Box css={{display: 'grid', gap: '0.5em'}}>
-            {data.map(item => (
-                <Link href={`/${type}s/${item.id}`}>
-                    <Box
-                        key={item.id}
-                        css={{
-                            position: 'relative',
-                            marginBottom: '1em',
-                            borderRadius: '10px',
-                            '&:hover': {
-                                '&::before': {
-                                    backgroundColor: '$hoverItem',
-                                },
-                            },
-                            '[data-theme="dark"] &': {
+            {data.map(item => {
+                const linkProps =
+                    type === 'post' && (item as Post).isExternal
+                        ? {href: (item as Post).url || '', isExternal: true}
+                        : {href: `/${type}s/${item.id}`}
+
+                return (
+                    <PostLink key={item.id} {...linkProps}>
+                        <Box
+                            css={{
+                                position: 'relative',
+                                marginBottom: '1em',
+                                borderRadius: '10px',
                                 '&:hover': {
                                     '&::before': {
-                                        backgroundColor: '$darkHoverItem',
+                                        backgroundColor: '$hoverItem',
                                     },
                                 },
-                            },
-                            '&::before': {
-                                transition: 'background-color 0.2s ease-in-out',
-                                content: '',
-                                position: 'absolute',
-                                width: '100%',
-                                height: '100%',
-                                top: '0em',
-                                left: 0,
-                                transform: 'scaleY(1.3) scaleX(1.05)',
-                                zIndex: -1,
-                                borderRadius: '10px',
-                            },
-                        }}>
-                        <TitleSection
-                            id={item.id}
-                            date={item.date}
-                            title={item.title}
-                        />
-                        <Box>
-                            <Description>
-                                {markdownToTxt(item.content).substring(0, 100)}
-                                ...
-                            </Description>
+                                '[data-theme="dark"] &': {
+                                    '&:hover': {
+                                        '&::before': {
+                                            backgroundColor: '$darkHoverItem',
+                                        },
+                                    },
+                                },
+                                '&::before': {
+                                    transition:
+                                        'background-color 0.2s ease-in-out',
+                                    content: '',
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    backgroundColor: 'transparent',
+                                    borderRadius: '6px',
+                                    zIndex: -1,
+                                },
+                            }}>
+                            <TitleText>{item.title}</TitleText>
+                            <DateText>
+                                {new Date(item.date).toLocaleDateString(
+                                    'en-US',
+                                    {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                    }
+                                )}
+                                {(item as Post).isExternal && ' • Substack'}
+                            </DateText>
                         </Box>
-                    </Box>
-                </Link>
-            ))}
+                    </PostLink>
+                )
+            })}
         </Box>
     )
 }

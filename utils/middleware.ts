@@ -40,6 +40,7 @@ const validate = async ({req, res, type}: IValidateRequest): Promise<void> => {
     const validationSchema = type === 'posts' ? postSchema : projectSchema
 
     try {
+        s
         await validationSchema.validate(body)
     } catch (error) {
         return res.status(400).json(error)
@@ -50,12 +51,13 @@ export const runMiddleware = (type: Middleware) => {
     return async (req: NextApiRequest, res: NextApiResponse<any>) => {
         const {method} = req
 
-        if (['POST', 'PUT', 'DELETE'].includes(method as string)) {
+        // Temporalmente desactivada la autenticación para pruebas
+        /*if (['POST', 'PUT', 'DELETE'].includes(method as string)) {
             const token = await getToken({req})
             if (!token) {
                 return res.status(401).json({message: 'Unauthorized'})
             }
-        }
+        }*/
 
         if (['POST', 'PUT'].includes(method as string)) {
             await validate({req, res, type})

@@ -66,7 +66,7 @@ const Description = styled('p', {
 
 const experiences = [
     {
-        date: '2024 - Present',
+        date: '2024 - Now',
         title: 'Mengo Consulting Group',
         description:
             'Working at Mengo Consulting Group, a cybersecurity consulting firm, participating in offensive and defensive security projects.',
@@ -76,6 +76,12 @@ const experiences = [
         title: 'Security Blue Team (BTL1) Certification',
         description:
             'Achieved the Blue Team Level 1 certification from Security Blue Team, validating my knowledge in cyber defense and monitoring.',
+    },
+    {
+        date: '2022 - 2024',
+        title: 'Técnico Universitario Superior en Programación - UTN',
+        description:
+            'I completed a Higher University Technician in Programming at the National Technological University (UTN), specializing in software development and programming languages.',
     },
 ]
 

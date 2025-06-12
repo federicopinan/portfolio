@@ -15,7 +15,6 @@ import MailIcon from 'public/svg/MailIcon.svg'
 import LinkedinIcon from 'public/svg/LinkedinIcon.svg'
 import ThemeItem from './utils/ThemeItem'
 import CVIcon from 'public/svg/CVIcon.svg'
-import FeedIcon from 'public/svg/FeedIcon.svg'
 const DockComponent = () => {
     const [domReady, setDomReady] = useState(false)
 
@@ -59,7 +58,7 @@ const DockComponent = () => {
                         href='https://github.com/federicopinan'
                     />
                 </DockItem>
-                <DockItem>
+                <DockItem divider>
                     <Item
                         icon={<LinkedinIcon />}
                         label='LinkedIn'
@@ -68,19 +67,12 @@ const DockComponent = () => {
                 </DockItem>
                 <DockItem>
                     <Item
-                        icon={<FeedIcon />}
-                        label='Feed'
-                        href='https://feed.federicopinan.dev'
-                    />
-                </DockItem>
-                <DockItem divider>
-                    <Item
                         icon={<MailIcon />}
                         label='Mail'
                         href='mailto:federicopinan@gmail.com'
                     />
                 </DockItem>
-                <DockItem divider>
+                <DockItem>
                     <Item
                         icon={<CVIcon />}
                         label='Download CV'

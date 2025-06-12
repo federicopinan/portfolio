@@ -16,7 +16,7 @@ type Props =
       }
 
 const TitleText = styled('h3', {
-    fontSize: '15px',
+    fontSize: '1.2rem',
     color: '$primaryTextColor',
     fontWeight: '600',
     '[data-theme="dark"] &': {
@@ -29,10 +29,10 @@ const TitleText = styled('h3', {
 const DateText = styled('p', {
     position: 'relative',
     display: 'inline-block',
-    fontSize: '13px',
+    fontSize: '1rem',
     color: '$secondaryTextColor',
     fontWeight: '500',
-    margin: '0',
+    marginTop: '0.5em',
     '&::before': {
         borderRadius: '5px',
         content: '',
